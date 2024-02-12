@@ -20,7 +20,7 @@
 * 13:30 - De nye test er grønne for nogen, men ikke andre
   * Kopier database til forventet sti `cp minitwit.db /tmp/minitwit.db`
 * 13:30 - Linuxbrew tager ekstremt lang tid om at installere, men bliver færdig. Alle linuxbrew operationer tager dog meget lang tid.
-* 13:40 - Et gruppemedlem har oplevet lignende problemer tidligere og oplevede at root cause var prolemer med WSL's DNS-lookup. Dette fikses ved at indsætte "[networking] generateResolvConf = false" i "/etc/wsl.conf". Herefter slettes "/etc/resolv.conf" og en ny tilføjes med indholdet "nameserver 8.8.8.8" eller lignende DNS-server, og denne fil gøres immutable med "sudo chattr +i resolv.conf". Dette tvinger WSL til at bruge en bestemt nameserver og efter dette fikses netværk-hastighed.
+* 13:40 - Et gruppemedlem har oplevet lignende problemer tidligere og oplevede at root cause var prolemer med WSL's DNS-lookup. Dette fikses ved at indsætte `[networking] generateResolvConf = false` i `/etc/wsl.conf`. Herefter slettes `/etc/resolv.conf` og en ny tilføjes med indholdet `nameserver 8.8.8.8` eller lignende DNS-server, og denne fil gøres immutable med `sudo chattr +i resolv.conf`. Dette tvinger WSL til at bruge en bestemt nameserver og efter dette fikses netværk-hastighed.
 
 * 13:50 - Vi installerer dependencies så sinatra kan tale med db
   * `bundle add activerecord`
@@ -28,3 +28,15 @@
   * `bundle add rake`
 
 
+MANDAG
+* 9:45 - Vi laver en .standardrc for at normalisere kode gruppen skriver
+* 9:48 - StringLiterals reglen i standard skal ignores
+* 9:50 - Alle bedes installerer følgende VS code extensions:
+  * Ruby Solargraph
+  * Standard Ruby
+  * Ruby (Den fra shopify)
+* 10:00 - Vi prøver at lave et test endpoint der returnerer sidste besked. Dette kræver at vi opretter en model (message.rb)
+* 10:05 - Endpointet fejler fordi database tabel hedder "message" og ikke "messages" - Vi overskriver manuelt table name med self.table_name = :message
+* 11:00 - Problemer med at gemme hashed password i databasen fordi ActiveModel.has_secure_password gemmer til `password_digest` attr, som ikke findes i db
+* 11:10 - vi renamer eksisterende `pw_hash` kolonne til `password_legacy` og laver en ny kolonne der hedder `password_digest` for at understøtte has_secure_password
+* 16:00 - Jeg glemte at lave noter

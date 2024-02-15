@@ -40,3 +40,7 @@ MANDAG
 * 11:00 - Problemer med at gemme hashed password i databasen fordi ActiveModel.has_secure_password gemmer til `password_digest` attr, som ikke findes i db
 * 11:10 - vi renamer eksisterende `pw_hash` kolonne til `password_legacy` og laver en ny kolonne der hedder `password_digest` for at understøtte has_secure_password
 * 16:00 - Jeg glemte at lave noter
+
+TORSDAG
+* 10:20 - Hvis man får fejl ved at køre migrations kan det være fordi at der ligger en gammel database i tmp. For at løse dette så slet databasen i tmp ved `rm /tmp/minitwit.db` og initialliser databasen igen med `./control.sh init`
+* 10:39 - `mkdir log` i repo for at `make test` virker 
